@@ -6,9 +6,7 @@ const config: Config = {
     ],
     theme: {
         extend: {
-            animation: {
-              "shake": "shake 0.3s ease-in-out infinite",
-            },
+            
             keyframes: {
               shake: {
                 "0%, 100%": { transform: "translateX(0)" },
@@ -17,9 +15,13 @@ const config: Config = {
                 "75%": { transform: "translateX(-2px)" },
               },
             },
+            animation: {
+              "shake-animation": "shake 0.3s ease-in-out infinite",
+            },
           },
     },
-    plugins: [],
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    plugins: [require('tailwindcss-motion')], 
 };
 
 export default config;
