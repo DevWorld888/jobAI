@@ -4,8 +4,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Github, Facebook, Eye, Mail } from "lucide-react";
-import Image from "next/image";
+import { Eye, Mail } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
+import { BiLogoFacebookSquare } from "react-icons/bi";
+import { SiRefinedgithub } from "react-icons/si";
+import { RiHomeHeartFill } from "react-icons/ri";
 import Link from "next/link";
 export default function LoginPage() {
     return (
@@ -14,20 +17,20 @@ export default function LoginPage() {
                 href="/"
                 className="absolute top-6 left-6 text-3xl font-bold text-purple-700 hover:underline"
             >
-                ← Back to Home
+                <RiHomeHeartFill/>Back to Home
             </Link>
             <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-md">
                 <h1 className="text-3xl font-bold text-center mb-6">Log in</h1>
 
                 <div className="flex gap-4 justify-center mb-6">
                     <Button variant="outline" onClick={() => signIn("google")}>
-                        <Image src="/google-icon.svg" alt="Google Icon" width={20} height={20} className="w-5 h-5 mr-2" /> Google
+                    <FcGoogle className="w-5 h-5 mr-2" />  Google
                     </Button>
                     <Button variant="outline" onClick={() => signIn("facebook")}>
-                        <Facebook className="w-5 h-5 mr-2" /> Facebook
+                        <BiLogoFacebookSquare className="w-5 h-5 mr-2" /> Facebook
                     </Button>
                     <Button variant="outline" onClick={() => signIn("github")}>
-                        <Github className="w-5 h-5 mr-2" /> GitHub
+                        <SiRefinedgithub className="w-5 h-5 mr-2" /> GitHub
                     </Button>
                 </div>
 
