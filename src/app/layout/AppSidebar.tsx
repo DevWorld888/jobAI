@@ -3,18 +3,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link';
 import { useSidebar } from '@/context/SidebarContext';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { BsGridFill } from "react-icons/bs"; import { AiFillCalendar } from "react-icons/ai";
-import { FaUserCircle } from "react-icons/fa";
-import { SiGoogleforms } from "react-icons/si";
-import { BsTable } from "react-icons/bs"; import { MdContactPage } from "react-icons/md";
-import { FaChevronDown } from "react-icons/fa";
-import { HiDotsHorizontal } from "react-icons/hi";
-import { IoPieChartSharp } from "react-icons/io5";
-import { FaBox } from "react-icons/fa";
-import { BsPlugin } from "react-icons/bs";
 
-import { Grid, Home, ShoppingCart, Users, Settings, HelpCircle, ChevronDown, ChevronRight } from 'lucide-react';
+import { Grid, ShoppingCart, Users, Settings, HelpCircle, ChevronDown, ChevronRight } from 'lucide-react';
 
 type NavItem = {
   name: string,
@@ -57,7 +47,7 @@ const navItems: NavItem[] = [
   },
 ];
 
-// const navItems: NavItem[] = [
+
 //   {
 //     icon: BsGridFill,
 //     name: "Dashboard",
@@ -195,11 +185,11 @@ const AppSidebar: React.FC = () => {
                 <div>
                   <button
                     onClick={() => toggleSubMenu(item.name)}
-                    className="flex items-center justify-between w-full px-3 py-2 text-left rounded-md hover:bg-gray-200 transition-colors"
+                    className="flex items-center justify-between w-full px-3 py-2 text-left rounded-md hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-center">
                       <item.icon className="w-5 h-5 mr-3 text-gray-600" />
-                      <span>{item.name}</span>
+                      <span >{item.name}</span>
                     </div>
                     {openItems[item.name] ? (
                       <ChevronDown className="w-4 h-4" />
