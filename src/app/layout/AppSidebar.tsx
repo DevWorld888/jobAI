@@ -131,10 +131,9 @@ const AppSidebar: React.FC = () => {
   return (
     <aside
       className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 dark:text-amber-50
-        ${
-          isExpanded || isMobileOpen
-            ? "w-[290px]"
-            : isHovered
+        ${isExpanded || isMobileOpen
+          ? "w-[290px]"
+          : isHovered
             ? "w-[290px]"
             : "w-[90px]"
         }
@@ -143,10 +142,9 @@ const AppSidebar: React.FC = () => {
       onMouseEnter={() => !isExpanded && setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-    <div
-        className={`py-8 flex  ${
-          !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
-        }`}
+      <div
+        className={`py-8 flex  ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+          }`}
       >
         <Link href="/">
           {isExpanded || isHovered || isMobileOpen ? (
@@ -176,7 +174,7 @@ const AppSidebar: React.FC = () => {
           )}
         </Link>
       </div>
-    <nav>
+      <nav>
         <ul className="space-y-1">
           {navItems.map((item) => (
             <li key={item.name} className="mb-1">
@@ -188,8 +186,10 @@ const AppSidebar: React.FC = () => {
                     className="flex items-center justify-between w-full px-3 py-2 text-left rounded-md hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-center">
-                      <item.icon className="w-5 h-5 mr-3 text-gray-600" />
-                      <span >{item.name}</span>
+                      <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" :  "text-gray-600" } `} />
+                      {(isExpanded || isHovered || isMobileOpen) && (
+                        <span className={`menu-item-text`}>{item.name}</span>
+                      )}
                     </div>
                     {openItems[item.name] ? (
                       <ChevronDown className="w-4 h-4" />
@@ -197,7 +197,7 @@ const AppSidebar: React.FC = () => {
                       <ChevronRight className="w-4 h-4" />
                     )}
                   </button>
-                  
+
                   {/* Subitems */}
                   {openItems[item.name] && (
                     <ul className="pl-10 mt-1 space-y-1">
@@ -226,8 +226,12 @@ const AppSidebar: React.FC = () => {
                   href={item.path}
                   className="flex items-center px-3 py-2 rounded-md hover:bg-gray-200 transition-colors"
                 >
-                  <item.icon className="w-5 h-5 mr-3 text-gray-600" />
-                  <span>{item.name}</span>
+                  <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" :  "text-gray-600" } `} />
+                  <span>
+                    {(isExpanded || isHovered || isMobileOpen) && (
+                      <span className={`menu-item-text`}>{item.name}</span>
+                    )}
+                  </span>
                 </a>
               )}
             </li>
