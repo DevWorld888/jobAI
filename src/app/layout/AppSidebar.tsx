@@ -89,7 +89,89 @@ const AppSidebar: React.FC = () => {
       [name]: !prev[name]
     }));
   };
+ const renderMenu = (menu: NavItem[],sectionTitle: string) => {
+    return (<>
+      <h2 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered
+        ? "lg:justify-center"
+        : "justify-start"
+        }`}>
+        {isExpanded || isHovered || isMobileOpen ? (
+          sectionTitle
+        ) : (
+          <Ellipsis />
+        )}
+      </h2>
+      <ul className="space-y-1">
+        {menu.map((item) => (
+          <li key={item.name} className="mb-1">
+            {/* Item with subitems */}
+            {item.subItems ? (
+              <div>
+                <button
+                  onClick={() => toggleSubMenu(item.name)}
+                  className="flex items-center justify-between w-full px-3 py-2 text-left rounded-md hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center">
+                    <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
+                    {(isExpanded || isHovered || isMobileOpen) && (
+                      <span className={`menu-item-text`}>{item.name}</span>
+                    )}
+                  </div>
+                  {openItems[item.name] ? (
+                    <ChevronDown className="w-4 h-4" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4" />
+                  )}
+                </button>
 
+                {/* Subitems */}
+                {(isExpanded || isHovered || isMobileOpen) && (
+                  <div>
+                    {openItems[item.name] && (
+
+                      <ul className="pl-10 mt-1 space-y-1">
+                        {item.subItems.map((subItem) => (
+                          <li key={subItem.name}>
+                            <a
+                              href={subItem.path}
+                              className="flex items-center px-3 py-2 text-sm rounded-md hover:bg-gray-200 transition-colors"
+                            >
+                              <span>{subItem.name}</span>
+                              {subItem.pro && (
+                                <span className="ml-2 text-xs bg-blue-500 text-white px-1.5 py-0.5 rounded-full">PRO</span>
+                              )}
+                              {subItem.new && (
+                                <span className="ml-2 text-xs bg-green-500 text-white px-1.5 py-0.5 rounded-full">NEW</span>
+                              )}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
+
+              </div>
+            ) : (
+              /* Regular item without subitems */
+              <a
+                href={item.path}
+                className="flex items-center px-3 py-2 rounded-md hover:bg-gray-200 transition-colors"
+              >
+                <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
+                <span>
+                  {(isExpanded || isHovered || isMobileOpen) && (
+                    <span className={`menu-item-text`}>{item.name}</span>
+                  )}
+                </span>
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    
+    </>)
+  }
 
   return (
     <aside
@@ -139,162 +221,10 @@ const AppSidebar: React.FC = () => {
       </div>
 
       <nav>
-        <h2 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered
-          ? "lg:justify-center"
-          : "justify-start"
-          }`}>
-          {isExpanded || isHovered || isMobileOpen ? (
-            "Menu"
-          ) : (
-            <Ellipsis />
-          )}
-        </h2>
-        <ul className="space-y-1">
-          {navItems.map((item) => (
-            <li key={item.name} className="mb-1">
-              {/* Item with subitems */}
-              {item.subItems ? (
-                <div>
-                  <button
-                    onClick={() => toggleSubMenu(item.name)}
-                    className="flex items-center justify-between w-full px-3 py-2 text-left rounded-md hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="flex items-center">
-                      <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
-                      {(isExpanded || isHovered || isMobileOpen) && (
-                        <span className={`menu-item-text`}>{item.name}</span>
-                      )}
-                    </div>
-                    {openItems[item.name] ? (
-                      <ChevronDown className="w-4 h-4" />
-                    ) : (
-                      <ChevronRight className="w-4 h-4" />
-                    )}
-                  </button>
-
-                  {/* Subitems */}
-                  {(isExpanded || isHovered || isMobileOpen) && (
-                    <div>
-                      {openItems[item.name] && (
-
-                        <ul className="pl-10 mt-1 space-y-1">
-                          {item.subItems.map((subItem) => (
-                            <li key={subItem.name}>
-                              <a
-                                href={subItem.path}
-                                className="flex items-center px-3 py-2 text-sm rounded-md hover:bg-gray-200 transition-colors"
-                              >
-                                <span>{subItem.name}</span>
-                                {subItem.pro && (
-                                  <span className="ml-2 text-xs bg-blue-500 text-white px-1.5 py-0.5 rounded-full">PRO</span>
-                                )}
-                                {subItem.new && (
-                                  <span className="ml-2 text-xs bg-green-500 text-white px-1.5 py-0.5 rounded-full">NEW</span>
-                                )}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  )}
-
-                </div>
-              ) : (
-                /* Regular item without subitems */
-                <a
-                  href={item.path}
-                  className="flex items-center px-3 py-2 rounded-md hover:bg-gray-200 transition-colors"
-                >
-                  <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
-                  <span>
-                    {(isExpanded || isHovered || isMobileOpen) && (
-                      <span className={`menu-item-text`}>{item.name}</span>
-                    )}
-                  </span>
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-        <h2 className={`mb-4 mt-8 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered
-          ? "lg:justify-center"
-          : "justify-start"
-          }`}>
-          {isExpanded || isHovered || isMobileOpen ? (
-            "Others"
-          ) : (
-            <Ellipsis />
-          )}
-        </h2>
-        <ul className="space-y-1">
-          {othersItems.map((item) => (
-            <li key={item.name} className="mb-1">
-              {/* Item with subitems */}
-              {item.subItems ? (
-                <div>
-                  <button
-                    onClick={() => toggleSubMenu(item.name)}
-                    className="flex items-center justify-between w-full px-3 py-2 text-left rounded-md hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="flex items-center">
-                      <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
-                      {(isExpanded || isHovered || isMobileOpen) && (
-                        <span className={`menu-item-text`}>{item.name}</span>
-                      )}
-                    </div>
-                    {openItems[item.name] ? (
-                      <ChevronDown className="w-4 h-4" />
-                    ) : (
-                      <ChevronRight className="w-4 h-4" />
-                    )}
-                  </button>
-
-                  {/* Subitems */}
-                  {(isExpanded || isHovered || isMobileOpen) && (
-                    <div>
-                      {openItems[item.name] && (
-
-                        <ul className="pl-10 mt-1 space-y-1">
-                          {item.subItems.map((subItem) => (
-                            <li key={subItem.name}>
-                              <a
-                                href={subItem.path}
-                                className="flex items-center px-3 py-2 text-sm rounded-md hover:bg-gray-200 transition-colors"
-                              >
-                                <span>{subItem.name}</span>
-                                {subItem.pro && (
-                                  <span className="ml-2 text-xs bg-blue-500 text-white px-1.5 py-0.5 rounded-full">PRO</span>
-                                )}
-                                {subItem.new && (
-                                  <span className="ml-2 text-xs bg-green-500 text-white px-1.5 py-0.5 rounded-full">NEW</span>
-                                )}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  )}
-
-                </div>
-              ) : (
-                /* Regular item without subitems */
-                <a
-                  href={item.path}
-                  className="flex items-center px-3 py-2 rounded-md hover:bg-gray-200 transition-colors"
-                >
-                  <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
-                  <span>
-                    {(isExpanded || isHovered || isMobileOpen) && (
-                      <span className={`menu-item-text`}>{item.name}</span>
-                    )}
-                  </span>
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
+        <div className="px-2">
+          {renderMenu(navItems, "Main")}
+          {renderMenu(othersItems, "Others")}
+        </div>
       </nav>
       <style jsx>{`
         .custom-scrollbar {
