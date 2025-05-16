@@ -5,6 +5,7 @@ import { useSidebar } from '@/context/SidebarContext';
 import Image from 'next/image';
 
 import { Grid, ShoppingCart, Users, Settings, HelpCircle, ChevronDown, ChevronRight, Ellipsis, ChartPie, Box, Plug } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 type NavItem = {
   name: string,
@@ -81,7 +82,7 @@ const othersItems: NavItem[] = [
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
-
+  const pathname = usePathname();
 
   const toggleSubMenu = (name: string) => {
     setOpenItems(prev => ({
@@ -109,7 +110,7 @@ const AppSidebar: React.FC = () => {
               <div>
                 <button
                   onClick={() => toggleSubMenu(item.name)}
-                  className="flex items-center justify-between w-full px-3 py-2 text-left rounded-md hover:bg-gray-50 transition-colors"
+                  className="flex items-center justify-between w-full px-3 py-2 text-left rounded-md hover:bg-gray-500 hover:bg-opacity-10 transition-colors"
                 >
                   <div className="flex items-center">
                     <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
@@ -134,7 +135,7 @@ const AppSidebar: React.FC = () => {
                           <li key={subItem.name}>
                             <a
                               href={subItem.path}
-                              className="flex items-center px-3 py-2 text-sm rounded-md hover:bg-gray-200 transition-colors"
+                              className="flex items-center px-3 py-2 text-sm rounded-md  hover:bg-gray-500 hover:bg-opacity-10 transition-colors"
                             >
                               <span>{subItem.name}</span>
                               {subItem.pro && (
@@ -156,7 +157,7 @@ const AppSidebar: React.FC = () => {
               /* Regular item without subitems */
               <a
                 href={item.path}
-                className="flex items-center px-3 py-2 rounded-md hover:bg-gray-200 transition-colors"
+                className="flex items-center px-3 py-2 rounded-md  hover:bg-gray-500 hover:bg-opacity-10 transition-colors"
               >
                 <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
                 <span>
@@ -172,6 +173,10 @@ const AppSidebar: React.FC = () => {
     
     </>)
   }
+
+  const isActive = useCallback((path: string) => path === pathname, [pathname]);
+
+  
 
   return (
     <aside
