@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useSidebar } from '@/context/SidebarContext';
 import Image from 'next/image';
 
-import { Grid, ShoppingCart, Users, Settings, HelpCircle, ChevronDown, ChevronRight, Ellipsis, ChartPie, Box, Plug } from 'lucide-react';
+import { Grid, ShoppingCart, Users, Settings, HelpCircle, ChevronDown, ChevronRight, Ellipsis, ChartPie, Box, Plug,ClipboardList,CircleUser  } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 type NavItem = {
@@ -29,9 +29,9 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    icon: Users,
-    name: "Customers",
-    path: "/customers",
+    icon: ClipboardList,
+    name: "Browse Jobs",
+    path: "/jobs",
   },
   {
     icon: Settings,
@@ -43,8 +43,8 @@ const navItems: NavItem[] = [
   },
   {
     icon: HelpCircle,
-    name: "Help",
-    path: "/help",
+    name: "User profile",
+    path: "/userProfile",
   },
 ];
 
@@ -176,7 +176,6 @@ const AppSidebar: React.FC = () => {
 
   const isActive = useCallback((path: string) => path === pathname, [pathname]);
 
-  
 
   return (
     <aside

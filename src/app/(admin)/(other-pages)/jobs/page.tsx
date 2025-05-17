@@ -37,7 +37,7 @@ const Page = () => {
     }, []);
     return (
         <div className="p-6 max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">Available Jobs</h1>
+        <h1 className="text-3xl font-bold mb-6">Available Jobs...</h1>
         <div className="grid gap-4">
           {jobs.map((job) => (
             <div key={job.id} className="border p-4 rounded-xl shadow-sm">
@@ -55,3 +55,4 @@ const Page = () => {
 }
 
 export default Page
+
