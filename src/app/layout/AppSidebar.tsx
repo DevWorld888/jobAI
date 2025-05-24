@@ -4,7 +4,21 @@ import Link from 'next/link';
 import { useSidebar } from '@/context/SidebarContext';
 import Image from 'next/image';
 
-import { Grid, ShoppingCart, Users, Settings, HelpCircle, ChevronDown, ChevronRight, Ellipsis, ChartPie, Box, Plug,ClipboardList,CircleUser  } from 'lucide-react';
+import { Grid, 
+  ShoppingCart, 
+  Users, 
+  Settings, 
+  HelpCircle, 
+  ChevronDown, 
+  ChevronRight, 
+  Ellipsis, 
+  ChartPie,
+  FileSearch2,
+  CloudUpload, 
+  Box, 
+  Plug, 
+  ClipboardList,
+   CircleUser } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 type NavItem = {
@@ -20,27 +34,37 @@ const navItems: NavItem[] = [
     name: "Dashboard",
     subItems: [{ name: "Ecommerce", path: "/", pro: false }],
   },
+  // {
+  //   icon: ShoppingCart,
+  //   name: "Products",
+  //   subItems: [
+  //     { name: "List", path: "/products", pro: false },
+  //     { name: "Add New", path: "/products/new", pro: true, new: true },
+  //   ],
+  // },
   {
-    icon: ShoppingCart,
-    name: "Products",
-    subItems: [
-      { name: "List", path: "/products", pro: false },
-      { name: "Add New", path: "/products/new", pro: true, new: true },
-    ],
+    icon: FileSearch2,
+    name: "Browse a job",
+    path: "/seeker/jobs",
   },
   {
     icon: ClipboardList,
-    name: "Browse Jobs",
-    path: "/jobs",
+    name: "My Applications",
+    path: "/my-applications",
   },
   {
-    icon: Settings,
-    name: "Settings",
-    subItems: [
-      { name: "General", path: "/settings/general", pro: false },
-      { name: "Security", path: "/settings/security", pro: true },
-    ],
+    icon: CloudUpload,
+    name: "Upload Resume",
+    path: "/upload-resume",
   },
+  // {
+  //   icon: Settings,
+  //   name: "Settings",
+  //   subItems: [
+  //     { name: "General", path: "/settings/general", pro: false },
+  //     { name: "Security", path: "/settings/security", pro: true },
+  //   ],
+  // },
   {
     icon: HelpCircle,
     name: "User profile",
@@ -49,17 +73,17 @@ const navItems: NavItem[] = [
 ];
 
 const othersItems: NavItem[] = [
-  {
-    icon: ChartPie,
-    name: "Charts",
-    subItems: [
-      { name: "Line Chart", path: "/line-chart", pro: false },
-      { name: "Bar Chart", path: "/bar-chart", pro: false },
-    ],
-  },
+  // {
+  //   icon: ChartPie,
+  //   name: "Charts",
+  //   subItems: [
+  //     { name: "Line Chart", path: "/line-chart", pro: false },
+  //     { name: "Bar Chart", path: "/bar-chart", pro: false },
+  //   ],
+  // },
   {
     icon: Box,
-    name: "UI Elements",
+    name: "Tools",
     subItems: [
       { name: "Alerts", path: "/alerts", pro: false },
       { name: "Avatar", path: "/avatars", pro: false },
@@ -90,7 +114,7 @@ const AppSidebar: React.FC = () => {
       [name]: !prev[name]
     }));
   };
- const renderMenu = (menu: NavItem[],sectionTitle: string) => {
+  const renderMenu = (menu: NavItem[], sectionTitle: string) => {
     return (<>
       <h2 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered
         ? "lg:justify-center"
@@ -110,7 +134,7 @@ const AppSidebar: React.FC = () => {
               <div>
                 <button
                   onClick={() => toggleSubMenu(item.name)}
-                  className="flex items-center justify-between w-full px-3 py-2 text-left rounded-md hover:bg-gray-500 hover:bg-opacity-10 transition-colors"
+                  className="flex items-center justify-between w-full py-2 text-left rounded-md hover:bg-gray-500 hover:bg-opacity-10 transition-colors"
                 >
                   <div className="flex items-center">
                     <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
@@ -157,9 +181,9 @@ const AppSidebar: React.FC = () => {
               /* Regular item without subitems */
               <a
                 href={item.path}
-                className="flex items-center px-3 py-2 rounded-md  hover:bg-gray-500 hover:bg-opacity-10 transition-colors"
+                className="flex items-center  py-2 rounded-md  hover:bg-gray-500 hover:bg-opacity-10 transition-colors"
               >
-                <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 text" : "text-gray-600"} `} />
+                <item.icon className={`${isExpanded || isHovered || isMobileOpen ? "w-5 h-5 mr-3 " : " text-gray-600"} `} />
                 <span>
                   {(isExpanded || isHovered || isMobileOpen) && (
                     <span className={`menu-item-text`}>{item.name}</span>
@@ -170,7 +194,7 @@ const AppSidebar: React.FC = () => {
           </li>
         ))}
       </ul>
-    
+
     </>)
   }
 
