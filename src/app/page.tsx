@@ -9,52 +9,7 @@ export default function Home() {
   const router = useRouter();
   return (
     <>
-      {/* Header superior */}
-      <header className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-        
-        <div className="flex items-center gap-2">
-          <Image
-            src="/images/logo/logo-icon.svg"
-            alt="Logo"
-            className="w-8 h-8"
-            width={32}
-            height={32}
-          />
-          <span className="font-bold text-lg text-gray-900 dark:text-white hidden sm:inline">
-            JOBAI
-          </span>
-        </div>
-       
-        {/* <nav className="flex-1 flex justify-center">
-          <ul className="flex gap-6">
-            <li>
-              <a
-                href="#"
-                className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-              >
-                About us
-              </a>
-            </li>
-          </ul>
-        </nav>
-        
-        <div>
-          <a
-            href="#"
-            className="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors text-sm"
-          >
-            Login
-          </a>
-        </div> */}
-      </header>
+      
       <main className="min-h-screen p-6 flex flex-col items-center justify-center bg-gray-50">
         <section className="text-center w-full  min-h-[40vh] md:min-h-[40vh] py-6 flex flex-col  items-center space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Find your dream job. Powered by AI.</h1>
