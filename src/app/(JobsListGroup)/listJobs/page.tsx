@@ -60,7 +60,7 @@ export default function Page() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f7f8fd] px-4 py-8">
+    <div className="min-h-screenpx-4 py-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-center mb-6">List Jobs</h1>
         <p className="text-center text-gray-500 mb-8">Here you can find all the jobs available.</p>
@@ -85,35 +85,35 @@ export default function Page() {
           <div className="flex gap-2 flex-wrap mt-2 sm:mt-0">
             <button
               type="button"
-              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'All' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'} hover:bg-blue-500 hover:text-white transition`}
+              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'All' ? 'bg-blue-600 text-white' : 'bg-[#7F8CAA] text-white'} hover:bg-blue-500 hover:text-white transition`}
               onClick={() => setFilter('All')}
             >
               All
             </button>
             <button
               type="button"
-              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'Remote' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'} hover:bg-blue-500 hover:text-white transition`}
+              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'Remote' ? 'bg-blue-600 text-white' : 'bg-[#7F8CAA] text-white'} hover:bg-blue-500 hover:text-white transition`}
               onClick={() => setFilter('Remote')}
             >
               Remote
             </button>
             <button
               type="button"
-              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'Full Time' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'} hover:bg-blue-500 hover:text-white transition`}
+              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'Full Time' ? 'bg-blue-600 text-white' : 'bg-[#7F8CAA] text-white'} hover:bg-blue-500 hover:text-white transition`}
               onClick={() => setFilter('Full Time')}
             >
               Full Time
             </button>
             <button
               type="button"
-              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'Part Time' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'} hover:bg-blue-500 hover:text-white transition`}
+              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'Part Time' ? 'bg-blue-600 text-white' : 'bg-[#7F8CAA] text-white'} hover:bg-blue-500 hover:text-white transition`}
               onClick={() => setFilter('Part Time')}
             >
               Part Time
             </button>
             <button
               type="button"
-              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'Contract' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'} hover:bg-blue-500 hover:text-white transition`}
+              className={`px-3 py-1 rounded-lg text-sm font-medium border ${filter === 'Contract' ? 'bg-blue-600 text-white' : 'bg-[#7F8CAA] text-white'} hover:bg-blue-500 hover:text-white transition`}
               onClick={() => setFilter('Contract')}
             >
               Contract
@@ -144,7 +144,7 @@ export default function Page() {
                 <span className="inline-block text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded mr-2">{job.type}</span>
                 <span className="text-green-600 font-semibold">{job.salary}</span>
               </div>
-              <button className="mt-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+              <button className="mt-auto px-4 py-2 bg-[#7F8CAA] text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
                 View Details
               </button>
             </div>

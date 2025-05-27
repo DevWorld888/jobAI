@@ -24,8 +24,9 @@ type LayoutProps = {
 //     </header>
 // );
 const Header: React.FC = () => (
-
-    <header className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <header
+        className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+    >
         <span className="font-bold text-lg text-gray-900 dark:text-white hidden sm:inline">
             JOBAI
         </span>
