@@ -37,6 +37,9 @@ async function seed() {
             location: faker.location.city(),
             description: faker.lorem.paragraph(),
             requirements: faker.lorem.sentences(2),
+            salary: `$${faker.number.int({ min: 50000, max: 150000 })} - $${faker.number.int({ min: 50000, max: 150000 })}`,
+            type: faker.helpers.arrayElement(["Full Time", "Part Time", "Contract"]),
+            logo: faker.image.urlLoremFlickr({ category: "business", width: 100, height: 100 }),
             recruiterId: recruiter.id,
         }).returning();
 

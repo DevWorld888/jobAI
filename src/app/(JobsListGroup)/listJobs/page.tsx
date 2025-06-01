@@ -1,49 +1,68 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Ejemplo de datos de trabajos
-const jobs = [
-  {
-    id: 1,
-    title: "Frontend Developer",
-    company: "Tech Solutions",
-    location: "Remote",
-    type: "Full Time",
-    salary: "$80k - $100k",
-    logo: "/images/logo/logo-icon.svg",
-  },
-  {
-    id: 2,
-    title: "Backend Engineer",
-    company: "Cloudify",
-    location: "Sydney, NSW",
-    type: "Part Time",
-    salary: "$60k - $80k",
-    logo: "/images/logo/logo-icon.svg",
-  },
-  {
-    id: 3,
-    title: "UI/UX Designer",
-    company: "DesignPro",
-    location: "Melbourne, VIC",
-    type: "Contract",
-    salary: "$70k - $90k",
-    logo: "/images/logo/logo-icon.svg",
-  },
-  {
-    id: 4,
-    title: "AI Researcher",
-    company: "OpenAI",
-    location: "Remote",
-    type: "Full Time",
-    salary: "$120k - $150k",
-    logo: "/images/logo/logo-icon.svg",
-  },
-];
+// const jobs = [
+//   {
+//     id: 1,
+//     title: "Frontend Developer",
+//     company: "Tech Solutions",
+//     location: "Remote",
+//     type: "Full Time",
+//     salary: "$80k - $100k",
+//     logo: "/images/logo/logo-icon.svg",
+//   },
+//   {
+//     id: 2,
+//     title: "Backend Engineer",
+//     company: "Cloudify",
+//     location: "Sydney, NSW",
+//     type: "Part Time",
+//     salary: "$60k - $80k",
+//     logo: "/images/logo/logo-icon.svg",
+//   },
+//   {
+//     id: 3,
+//     title: "UI/UX Designer",
+//     company: "DesignPro",
+//     location: "Melbourne, VIC",
+//     type: "Contract",
+//     salary: "$70k - $90k",
+//     logo: "/images/logo/logo-icon.svg",
+//   },
+//   {
+//     id: 4,
+//     title: "AI Researcher",
+//     company: "OpenAI",
+//     location: "Remote",
+//     type: "Full Time",
+//     salary: "$120k - $150k",
+//     logo: "/images/logo/logo-icon.svg",
+//   },
+// ];
+
+type Job = {
+  id: number;
+  title: string;
+  company: string;
+  location: string;
+  type: string;
+  salary: string;
+  logo: string;
+};
 
 export default function Page() {
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<'All' | 'Remote' | 'Full Time' | 'Part Time' | 'Contract'>('All');
+
+  useEffect(() => {
+    // Replace '/api/jobs' with your actual API endpoint
+    fetch('/api/jobs/')
+      .then(res => res.json())
+      .then(data => setJobs(data))
+      .catch(err => console.error(err));
+  }, []);
 
   const filteredJobs = jobs.filter(job => {
     const matchesSearch =

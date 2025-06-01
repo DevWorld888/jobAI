@@ -8,6 +8,13 @@
       "when": 1743150153698,
       "tag": "0000_pretty_kang",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1748774724846,
+      "tag": "0001_wakeful_colossus",
+      "breakpoints": true
     }
   ]
 }
