@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, Suspense } from "react";
 
 type LayoutProps = {
     children: ReactNode;
@@ -65,9 +65,11 @@ const Header: React.FC = () => (
 const Layout: React.FC<LayoutProps> = ({ children }) => (
     <div>
         <Header />
-        <main style={{ padding: "2rem" }}>
-            {children}
-        </main>
+        <Suspense fallback={<div>Loading...</div>}>
+            <main style={{ padding: "2rem" }}>
+                {children}
+            </main>
+        </Suspense>
     </div>
 );
 
