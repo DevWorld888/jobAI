@@ -15,9 +15,7 @@ const ResponsiveLogin = () => {
       image: "📱",
       cards: [
         { icon: "🎯", title: "Taste of the Week", subtitle: "Try the latest food trends" },
-        { icon: "🏆", title: "Win exciting prizes", subtitle: "Complete challenges" },
-        { icon: "📍", title: "Open House Day", subtitle: "Visit our locations" },
-        { icon: "👥", title: "Who calls the most", subtitle: "Leaderboard competition" }
+        
       ]
     },
     {
@@ -26,9 +24,7 @@ const ResponsiveLogin = () => {
       image: "🌟",
       cards: [
         { icon: "💬", title: "Chat & Connect", subtitle: "Talk with other users" },
-        { icon: "🎁", title: "Daily Rewards", subtitle: "Claim your bonuses" },
-        { icon: "📊", title: "Track Progress", subtitle: "Monitor your achievements" },
-        { icon: "🔔", title: "Notifications", subtitle: "Stay updated" }
+        
       ]
     },
     {
@@ -37,9 +33,7 @@ const ResponsiveLogin = () => {
       image: "🤝",
       cards: [
         { icon: "👤", title: "Profile Setup", subtitle: "Customize your presence" },
-        { icon: "🌐", title: "Global Network", subtitle: "Connect worldwide" },
-        { icon: "⭐", title: "Rate & Review", subtitle: "Share your thoughts" },
-        { icon: "🎊", title: "Events", subtitle: "Join special occasions" }
+        
       ]
     }
   ];
@@ -80,7 +74,7 @@ const ResponsiveLogin = () => {
           </div>
 
           {/* Feature Cards */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className='flex flex-col w-full h-full"'>
             {currentSlideData.cards.map((card, index) => (
               <div 
                 key={index}
@@ -91,8 +85,8 @@ const ResponsiveLogin = () => {
                 }}
               >
                 <div className="text-2xl mb-2">{card.icon}</div>
-                <h4 className="text-sm font-semibold mb-1">{card.title}</h4>
-                <p className="text-xs opacity-80">{card.subtitle}</p>
+                <h4 className="text-sm font-semibold mb-1 text-black">{card.title}</h4>
+                <p className="text-xs opacity-80  text-black">{card.subtitle}</p>
               </div>
             ))}
           </div>
@@ -109,7 +103,7 @@ const ResponsiveLogin = () => {
           <div className="flex justify-center items-center space-x-4">
             <button 
               onClick={prevSlide}
-              className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
+              className="w-5 h-5 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
             >
               <ChevronLeft size={20} />
             </button>
@@ -128,7 +122,7 @@ const ResponsiveLogin = () => {
             
             <button 
               onClick={nextSlide}
-              className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
+              className="w-5 h-5 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
             >
               <ChevronRight size={20} />
             </button>
