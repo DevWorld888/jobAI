@@ -58,7 +58,14 @@ const ResponsiveLogin = () => {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-white">
       {/* Left Section - Blue Background with Slider */}
-      <div className="relative bg-gradient-to-br from-blue-600 to-blue-700 lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center items-center text-white overflow-hidden">
+      <div className="relative bg-gradient-to-br from-blue-600 to-blue-700 lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center items-center text-white overflow-hidden"
+      style={{
+    backgroundImage: "url('/images/login/ia.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+      
+      >
         {/* Decorative Elements */}
         <div className="absolute top-8 left-8 w-4 h-4 bg-orange-400 rounded-full opacity-80"></div>
         <div className="absolute top-20 right-16 w-3 h-3 bg-green-400 rounded-full opacity-80"></div>
@@ -67,67 +74,7 @@ const ResponsiveLogin = () => {
         <div className="absolute bottom-32 right-20 w-4 h-4 bg-pink-300 rounded-full opacity-60"></div>
         
         {/* Slider Content */}
-        <div className="relative z-10 max-w-md w-full text-center">
-          {/* Main Illustration */}
-          <div className="mb-8 text-6xl lg:text-8xl">
-            {currentSlideData.image}
-          </div>
-
-          {/* Feature Cards */}
-          <div className='flex flex-col w-full h-full"'>
-            {currentSlideData.cards.map((card, index) => (
-              <div 
-                key={index}
-                className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-4 transform transition-all duration-500 hover:scale-105"
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                  animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
-                }}
-              >
-                <div className="text-2xl mb-2">{card.icon}</div>
-                <h4 className="text-sm font-semibold mb-1 text-black">{card.title}</h4>
-                <p className="text-xs opacity-80  text-black">{card.subtitle}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Title and Subtitle */}
-          <h2 className="text-2xl lg:text-3xl font-bold mb-4 leading-tight">
-            {currentSlideData.title}
-          </h2>
-          <p className="text-blue-100 mb-8 text-sm lg:text-base">
-            {currentSlideData.subtitle}
-          </p>
-
-          {/* Slide Navigation */}
-          <div className="flex justify-center items-center space-x-4">
-            <button 
-              onClick={prevSlide}
-              className="w-5 h-5 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            
-            <div className="flex space-x-2">
-              {slides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentSlide ? 'bg-white w-8' : 'bg-white bg-opacity-40'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <button 
-              onClick={nextSlide}
-              className="w-5 h-5 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-        </div>
+       
 
         {/* Decorative Wave */}
         <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-blue-800 to-transparent"></div>
