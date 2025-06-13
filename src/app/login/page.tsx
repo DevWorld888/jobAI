@@ -1,71 +1,81 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Eye, EyeOff } from 'lucide-react';
+// import React, { useState, useEffect } from 'react';
+// import { ChevronLeft, ChevronRight, Eye, EyeOff } from 'lucide-react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 const ResponsiveLogin = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('johnnybravo@afterglow.com');
-  const [password, setPassword] = useState('');
-
-  const slides = [
-    {
-      title: "Easy To Navigate And Earn Rewards",
-      subtitle: "Now you can make reservations and compete against other users.",
-      image: "📱",
-      cards: [
-        { icon: "🎯", title: "Taste of the Week", subtitle: "Try the latest food trends" },
-        
-      ]
-    },
-    {
-      title: "Discover Amazing Features",
-      subtitle: "Connect with friends and explore new possibilities.",
-      image: "🌟",
-      cards: [
-        { icon: "💬", title: "Chat & Connect", subtitle: "Talk with other users" },
-        
-      ]
-    },
-    {
-      title: "Join The Community",
-      subtitle: "Be part of something bigger and share experiences.",
-      image: "🤝",
-      cards: [
-        { icon: "👤", title: "Profile Setup", subtitle: "Customize your presence" },
-        
-      ]
+   const [role, setRole] = useState<"seeker" | "recruiter" | null>(null);
+   useEffect(() => {
+    const storedRole = localStorage.getItem("next_user_role");
+    if (storedRole === "seeker" || storedRole === "recruiter") {
+      setRole(storedRole);
     }
-  ];
+  }, []);
+  // const [currentSlide, setCurrentSlide] = useState(0);
+  // const [showPassword, setShowPassword] = useState(false);
+  // const [email, setEmail] = useState('johnnybravo@afterglow.com');
+  // const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [slides.length]);
+  // const slides = [
+  //   {
+  //     title: "Easy To Navigate And Earn Rewards",
+  //     subtitle: "Now you can make reservations and compete against other users.",
+  //     image: "📱",
+  //     cards: [
+  //       { icon: "🎯", title: "Taste of the Week", subtitle: "Try the latest food trends" },
+        
+  //     ]
+  //   },
+  //   {
+  //     title: "Discover Amazing Features",
+  //     subtitle: "Connect with friends and explore new possibilities.",
+  //     image: "🌟",
+  //     cards: [
+  //       { icon: "💬", title: "Chat & Connect", subtitle: "Talk with other users" },
+        
+  //     ]
+  //   },
+  //   {
+  //     title: "Join The Community",
+  //     subtitle: "Be part of something bigger and share experiences.",
+  //     image: "🤝",
+  //     cards: [
+  //       { icon: "👤", title: "Profile Setup", subtitle: "Customize your presence" },
+        
+  //     ]
+  //   }
+  // ];
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentSlide((prev) => (prev + 1) % slides.length);
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [slides.length]);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  // const nextSlide = () => {
+  //   setCurrentSlide((prev) => (prev + 1) % slides.length);
+  // };
 
-  const currentSlideData = slides[currentSlide];
+  // const prevSlide = () => {
+  //   setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  // };
+
+  // const currentSlideData = slides[currentSlide];
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-white">
       {/* Left Section - Blue Background with Slider */}
-      <div className="relative bg-gradient-to-br from-blue-600 to-blue-700 lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center items-center text-white overflow-hidden"
-      style={{
-    backgroundImage: "url('/images/login/ia.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
-      
+      <div className="relative bg-gradient-to-br from-blue-600 to-blue-700 lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center items-center text-white overflow-hidden"     
       >
+        <Image
+        src="/images/login/ia.jpg"
+        alt="background"
+        fill
+        className="object-cover z-0"
+        priority
+      />
         {/* Decorative Elements */}
         <div className="absolute top-8 left-8 w-4 h-4 bg-orange-400 rounded-full opacity-80"></div>
         <div className="absolute top-20 right-16 w-3 h-3 bg-green-400 rounded-full opacity-80"></div>
@@ -102,7 +112,7 @@ const ResponsiveLogin = () => {
           {/* Login Form */}
           <div className="space-y-6">
             {/* Email Field */}
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
               <div className="relative">
                 <input
@@ -114,10 +124,10 @@ const ResponsiveLogin = () => {
                 />
                 <div className="absolute right-3 top-3 text-gray-400">@</div>
               </div>
-            </div>
+            </div> */}
 
             {/* Password Field */}
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
               <div className="relative">
                 <input
@@ -135,10 +145,10 @@ const ResponsiveLogin = () => {
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
-            </div>
+            </div> */}
 
             {/* Remember Me & Forgot Password */}
-            <div className="flex items-center justify-between text-sm">
+            {/* <div className="flex items-center justify-between text-sm">
               <label className="flex items-center">
                 <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
                 <span className="ml-2 text-gray-600">Remember Me</span>
@@ -146,17 +156,18 @@ const ResponsiveLogin = () => {
               <a href="#" className="text-blue-600 hover:text-blue-700 transition-colors">
                 Recovery Password
               </a>
-            </div>
+            </div> */}
 
             {/* Login Button */}
-            <button
+            {/* <button
               onClick={(e) => e.preventDefault()}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Login
-            </button>
+            </button> */}
 
             {/* Google Sign In */}
+            <p>You’re signing in as: <strong>{role ?? "Guest"}</strong></p>
             <button
               onClick={(e) => e.preventDefault()}
               className="w-full border border-gray-300 hover:border-gray-400 text-gray-700 font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
@@ -171,12 +182,12 @@ const ResponsiveLogin = () => {
             </button>
 
             {/* Sign Up Link */}
-            <div className="text-center text-sm text-gray-600">
+            {/* <div className="text-center text-sm text-gray-600">
               Don't have an account yet?{' '}
               <a href="#" className="text-blue-600 hover:text-blue-700 font-medium transition-colors">
                 Sign Up
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
