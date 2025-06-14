@@ -25,7 +25,7 @@ const JobCard: React.FC<JobCardProps> = ({
   return (
     <div className="max-w-sm mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
       {/* Header with company logo */}
-      <div className="bg-gradient-to-br from-blue-50 to-purple-50 px-6 py-8 text-center relative">
+      {/* <div className="bg-gradient-to-br from-blue-50 to-purple-50 px-6 py-8 text-center relative">
         <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center">
           <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full flex items-center justify-center">
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
@@ -38,7 +38,7 @@ const JobCard: React.FC<JobCardProps> = ({
           </div>
         </div>
         <h2 className="text-lg font-semibold text-gray-800">{company}</h2>
-      </div>
+      </div> */}
 
       {/* Content */}
       <div className="p-6">
