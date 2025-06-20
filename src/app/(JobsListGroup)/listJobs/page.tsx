@@ -1,7 +1,7 @@
 'use client'
 
 import JobCard from '@/components/custom/cardJobs';
-import JobCardSkeleton, { JobCardSkeletonShimmer } from '@/components/custom/skeletonCardJobs';
+import  { JobCardSkeletonShimmer } from '@/components/custom/skeletonCardJobs';
 import { useEffect, useState } from 'react';
 // Ejemplo de datos de trabajos
 // const jobs = [

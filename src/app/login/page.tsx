@@ -3,15 +3,27 @@
 // import { ChevronLeft, ChevronRight, Eye, EyeOff } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-
+import { signIn, signOut, useSession } from 'next-auth/react';
 const ResponsiveLogin = () => {
    const [role, setRole] = useState<"seeker" | "recruiter" | null>(null);
+   const { data: session } = useSession();
+
+   
    useEffect(() => {
     const storedRole = localStorage.getItem("next_user_role");
     if (storedRole === "seeker" || storedRole === "recruiter") {
       setRole(storedRole);
     }
   }, []);
+
+  if (session) {
+    return (
+      <div>
+        <p>Hola {session.user?.name}</p>
+        <button onClick={() => signOut()}>Cerrar sesión</button>
+      </div>
+    );
+  }
   // const [currentSlide, setCurrentSlide] = useState(0);
   // const [showPassword, setShowPassword] = useState(false);
   // const [email, setEmail] = useState('johnnybravo@afterglow.com');
@@ -169,7 +181,8 @@ const ResponsiveLogin = () => {
             {/* Google Sign In */}
             <p>You’re signing in as: <strong>{role ?? "Guest"}</strong></p>
             <button
-              onClick={(e) => e.preventDefault()}
+              onClick={() => signIn('google')}
+              // onClick={(e) => e.preventDefault()}
               className="w-full border border-gray-300 hover:border-gray-400 text-gray-700 font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">

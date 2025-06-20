@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { Sidebarprovider } from "@/context/SidebarContext";
+import { Providers } from "./provider";
 
 
 const geistSans = Geist({
@@ -29,8 +30,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Sidebarprovider>
+          <Providers>
           {/* Contenido principal */}
           {children}
+          </Providers>
         </Sidebarprovider>
       </body>
     </html>

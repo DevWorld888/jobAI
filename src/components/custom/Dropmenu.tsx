@@ -42,7 +42,6 @@ const DropdownMenu: React.FC = ({}) => {
         className="flex items-center gap-2 p-2 bg-white border rounded-4xl hover:bg-black transition-colors group"
         
       >
-        
         <SquareMenu className={`h-4 w-4 ${isOpen ? "transform rotate-180" : ""} group-hover:bg-white`} />
       </button>
       {isOpen && (
