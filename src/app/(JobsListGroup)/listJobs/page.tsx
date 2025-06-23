@@ -1,5 +1,5 @@
 'use client'
-
+import useSWR from "swr";
 import JobCard from '@/components/custom/cardJobs';
 import  { JobCardSkeletonShimmer } from '@/components/custom/skeletonCardJobs';
 import { useEffect, useState } from 'react';
@@ -52,21 +52,25 @@ type Job = {
   salary: string;
   logo: string;
 };
+const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export default function Page() {
-  const [loading, setLoading] = useState(true);
-  const [jobs, setJobs] = useState<Job[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // const [jobs, setJobs] = useState<Job[]>([]);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<'All' | 'Remote' | 'Full Time' | 'Part Time' | 'Contract'>('All');
+   const { data: jobs, error, isLoading } = useSWR("/api/jobs", fetcher);
 
-  useEffect(() => {
-    // Replace '/api/jobs' with your actual API endpoint
-    fetch('/api/jobs/')
-      .then(res => res.json())
-      .then(data => setJobs(data))
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
-  }, []);
+  if (isLoading) return <p>Cargando trabajos...</p>;
+  if (error) return <p>Hubo un error al cargar trabajos</p>;
+  // useEffect(() => {
+  //   // Replace '/api/jobs' with your actual API endpoint
+  //   fetch('/api/jobs/')
+  //     .then(res => res.json())
+  //     .then(data => setJobs(data))
+  //     .catch(err => console.error(err))
+  //     .finally(() => setLoading(false));
+  // }, []);
 
   
 
@@ -146,7 +150,7 @@ export default function Page() {
           </div>
         </form>
         {/* Cards */}
-        {loading ? (
+        {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
             {Array.from({ length: 8 }).map((_, i) => (
               <JobCardSkeletonShimmer key={i} />
