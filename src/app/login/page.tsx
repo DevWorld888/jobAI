@@ -95,8 +95,6 @@ const ResponsiveLogin = () => {
         <div className="absolute top-32 left-1/3 w-2 h-2 bg-purple-300 rounded-full opacity-60"></div>
         <div className="absolute bottom-32 right-20 w-4 h-4 bg-pink-300 rounded-full opacity-60"></div>
 
-        {/* Slider Content */}
-
 
         {/* Decorative Wave */}
         <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-blue-800 to-transparent"></div>

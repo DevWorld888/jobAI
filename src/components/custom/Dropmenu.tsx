@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { 
   Edit3, 
   UserCheck , 
@@ -9,7 +10,8 @@ import {
 import Link from 'next/link';
 const DropdownMenu: React.FC = ({}) => {
   const menuRef = useRef<HTMLDivElement>(null);
-
+  const { data: session, status } = useSession();
+  const [role, setRole] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   
   const toggleMenu = () => {
@@ -34,7 +36,11 @@ const DropdownMenu: React.FC = ({}) => {
     };
   }, [isOpen, setIsOpen]);
 
-
+  useEffect(() => {
+    const storedRole = localStorage.getItem("next_user_role");
+    setRole(storedRole);
+  }, []);
+  if (status === "loading") return <p>Cargando...</p>;
   return (
     <div className="relative">
       <button 
@@ -60,14 +66,30 @@ const DropdownMenu: React.FC = ({}) => {
                 Login
               </Link>
             </li>
-            <li className="flex items-center gap-2 p-2 hover:bg-black cursor-pointer group">
-              <HousePlug  className="h-4 w-4 group-hover:text-white transition-colors" />
-              <Link href="/" className="text-gray-700 group-hover:text-white transition-colors">
-                 Home
-              </Link>
-              
-            </li>
+
           </ul>
+           {session && (
+        <>
+          <button onClick={() => signOut({ callbackUrl: "/" })}>
+            Cerrar sesión
+          </button>
+          <span>👤 {session.user?.name}</span>
+
+          {role === "seeker" && (
+            <>
+              <a href="/profile">Mi perfil</a>
+              <a href="/tools">Herramientas</a>
+            </>
+          )}
+
+          {role === "recruiter" && (
+            <>
+              <a href="/dashboard">Dashboard</a>
+              <a href="/post-job">Publicar trabajo</a>
+            </>
+          )}
+        </>
+      )}
         </div>
       )}
     </div>

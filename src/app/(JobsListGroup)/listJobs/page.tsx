@@ -3,45 +3,6 @@ import useSWR from "swr";
 import JobCard from '@/components/custom/cardJobs';
 import  { JobCardSkeletonShimmer } from '@/components/custom/skeletonCardJobs';
 import { useEffect, useState } from 'react';
-// Ejemplo de datos de trabajos
-// const jobs = [
-//   {
-//     id: 1,
-//     title: "Frontend Developer",
-//     company: "Tech Solutions",
-//     location: "Remote",
-//     type: "Full Time",
-//     salary: "$80k - $100k",
-//     logo: "/images/logo/logo-icon.svg",
-//   },
-//   {
-//     id: 2,
-//     title: "Backend Engineer",
-//     company: "Cloudify",
-//     location: "Sydney, NSW",
-//     type: "Part Time",
-//     salary: "$60k - $80k",
-//     logo: "/images/logo/logo-icon.svg",
-//   },
-//   {
-//     id: 3,
-//     title: "UI/UX Designer",
-//     company: "DesignPro",
-//     location: "Melbourne, VIC",
-//     type: "Contract",
-//     salary: "$70k - $90k",
-//     logo: "/images/logo/logo-icon.svg",
-//   },
-//   {
-//     id: 4,
-//     title: "AI Researcher",
-//     company: "OpenAI",
-//     location: "Remote",
-//     type: "Full Time",
-//     salary: "$120k - $150k",
-//     logo: "/images/logo/logo-icon.svg",
-//   },
-// ];
 
 type Job = {
   id: number;
@@ -55,24 +16,13 @@ type Job = {
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export default function Page() {
-  // const [loading, setLoading] = useState(true);
-  // const [jobs, setJobs] = useState<Job[]>([]);
+  
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<'All' | 'Remote' | 'Full Time' | 'Part Time' | 'Contract'>('All');
    const { data: jobs, error, isLoading } = useSWR("/api/jobs", fetcher);
 
   if (isLoading) return <p>Cargando trabajos...</p>;
   if (error) return <p>Hubo un error al cargar trabajos</p>;
-  // useEffect(() => {
-  //   // Replace '/api/jobs' with your actual API endpoint
-  //   fetch('/api/jobs/')
-  //     .then(res => res.json())
-  //     .then(data => setJobs(data))
-  //     .catch(err => console.error(err))
-  //     .finally(() => setLoading(false));
-  // }, []);
-
-  
 
   const filteredJobs = jobs.filter(job => {
     const matchesSearch =
@@ -164,27 +114,6 @@ export default function Page() {
               </div>
             )}
             {filteredJobs.map(job => (
-              // <div
-              //   key={job.id}
-              //   className="bg-white rounded-xl shadow-md p-6 flex flex-col hover:shadow-lg transition-shadow duration-200"
-              // >
-              //   <div className="flex items-center gap-3 mb-4">
-              //     <img src={job.logo} alt={job.company} className="w-10 h-10 rounded-full bg-gray-100" />
-              //     <div>
-              //       <h2 className="text-lg font-semibold">{job.title}</h2>
-              //       <span className="text-sm text-gray-500">{job.company}</span>
-              //     </div>
-              //   </div>
-              //   <div className="flex flex-col gap-1 mb-4">
-              //     <span className="text-gray-700 text-sm">{job.location}</span>
-              //     <span className="inline-block text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded mr-2">{job.type}</span>
-              //     <span className="text-green-600 font-semibold">{job.salary}</span>
-              //   </div>
-              //   <button className="mt-auto px-4 py-2 bg-[#0f1d3c] text-white rounded-lg hover:bg-[#2c2f4e] transition-colors text-sm font-medium cursor-pointer">
-              //     View Details
-              //   </button>
-              // </div>
-
               <JobCard 
               key={job.id}
               company={job.company}
