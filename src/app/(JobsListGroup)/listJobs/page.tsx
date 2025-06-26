@@ -3,6 +3,7 @@ import useSWR from "swr";
 import JobCard from '@/components/custom/cardJobs';
 import  { JobCardSkeletonShimmer } from '@/components/custom/skeletonCardJobs';
 import { useEffect, useState } from 'react';
+import JobsListSkeleton from "@/components/custom/LoadingListJobs";
 
 type Job = {
   id: number;
@@ -21,7 +22,7 @@ export default function Page() {
   const [filter, setFilter] = useState<'All' | 'Remote' | 'Full Time' | 'Part Time' | 'Contract'>('All');
    const { data: jobs, error, isLoading } = useSWR("/api/jobs", fetcher);
 
-  if (isLoading) return <p>Cargando trabajos...</p>;
+  if (isLoading) return <JobsListSkeleton />;
   if (error) return <p>Hubo un error al cargar trabajos</p>;
 
   const filteredJobs = jobs.filter(job => {
@@ -41,8 +42,10 @@ export default function Page() {
   return (
     <div className="min-h-screenpx-4 py-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-6">List Jobs</h1>
-        <p className="text-center text-gray-500 mb-8">Here you can find all the jobs available.</p>
+         <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">List Jobs</h1>
+          <p className="text-gray-600">Here you can find all the jobs available.</p>
+        </div>
         {/* Search and Filters */}
         <form
           className="w-full max-w-3xl mx-auto flex flex-col sm:flex-row items-center bg-white rounded-xl shadow-md border border-gray-200 px-4 py-2 mb-8 gap-2"

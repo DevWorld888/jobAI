@@ -1,5 +1,5 @@
 import Image from "next/image";
-import DropdownMenu from "./Dropmenu";
+
 import UserProfileDropdown from "./UserDropDown";
 
 const Header: React.FC = () => (
@@ -18,7 +18,7 @@ const Header: React.FC = () => (
                 height={40}
                 className="rounded-full"
             />
-            <span className="hidden sm:inline text-2xl font-extrabold text-blue-600 drop-shadow-md animate-pulse">Welcome, User</span>
+            
         </div>
         <div>
             <UserProfileDropdown/>
