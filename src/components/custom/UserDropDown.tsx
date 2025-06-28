@@ -1,13 +1,17 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { Settings, HelpCircle, Moon, LogOut, ChevronDown } from 'lucide-react';
 import ButtonSkeleton from './ButtonSkeleton';
 
+
 const UserProfileDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [role, setRole] = useState<string | null>(null);
   const { data: session, status } = useSession();
+  const router = useRouter();
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -16,6 +20,11 @@ const UserProfileDropdown = () => {
     console.log(`${action} clicked`);
     // Add your action handlers here
   };
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem("next_user_role");
+    setRole(storedRole);
+  }, []);
 
   if (status === "loading") {
     return (
@@ -114,35 +123,84 @@ const UserProfileDropdown = () => {
                   Accessibility
                 </span>
               </button>
-              <button
-                onClick={() => handleMenuClick('Accessibility')}
-                className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-purple-50 transition-colors group"
-              >
-                <Moon
-                  size={20}
-                  className="text-gray-400 group-hover:text-purple-600 transition-colors"
-                />
-                <span className="text-gray-700 group-hover:text-purple-700 transition-colors">
-                  Tools
-                </span>
-              </button>
+
+
+
+              {session && (
+                <>
+                  {role === "seeker" && (
+                    <>
+                      {/* Tools */}
+                      <button
+                        onClick={() => handleMenuClick('Accessibility')}
+                        className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-purple-50 transition-colors group"
+                      >
+                        <Moon
+                          size={20}
+                          className="text-gray-400 group-hover:text-purple-600 transition-colors"
+                        />
+                        <span className="text-gray-700 group-hover:text-purple-700 transition-colors">
+                          Tools
+                        </span>
+                      </button>
+                    </>
+                  )}
+
+                  {role === "recruiter" && (
+                    <>
+                       {/* Dashboard */}
+                      <button
+                        onClick={() => handleMenuClick('Accessibility')}
+                        className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-purple-50 transition-colors group"
+                      >
+                        <Moon
+                          size={20}
+                          className="text-gray-400 group-hover:text-purple-600 transition-colors"
+                        />
+                        <span className="text-gray-700 group-hover:text-purple-700 transition-colors">
+                          Dashboard
+                        </span>
+                      </button>
+                    </>
+                  )}
+                </>
+              )}
+
             </div>
 
             {/* Sign Out Section */}
-            <div className="border-t border-gray-100 pt-2">
-              <button
-                onClick={() => handleMenuClick('Sign Out')}
-                className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-red-50 transition-colors group"
-              >
-                <LogOut
-                  size={20}
-                  className="text-gray-400 group-hover:text-red-500 transition-colors"
-                />
-                <span className="text-gray-700 group-hover:text-red-600 transition-colors">
-                  Sign Out
-                </span>
-              </button>
-            </div>
+            {session ? (
+              <div className="border-t border-gray-100 pt-2">
+                <button
+                  onClick={() => signOut()}
+                  className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-red-50 transition-colors group"
+                >
+                  <LogOut
+                    size={20}
+                    className="text-gray-400 group-hover:text-red-500 transition-colors"
+                  />
+                  <span className="text-gray-700 group-hover:text-red-600 transition-colors">
+                    Sign Out
+                  </span>
+                </button>
+              </div>
+            ) : (
+              <div className="border-t border-gray-100 pt-2">
+                <button
+                  onClick={() => router.push('/login')}
+                  className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-blue-50 transition-colors group"
+                >
+                  <LogOut
+                    size={20}
+                    className="text-gray-400 group-hover:text-blue-500 transition-colors"
+                  />
+                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors">
+                    Sign In
+                  </span>
+                </button>
+              </div>
+            )}
+
 
             {/* Dropdown Arrow */}
             <div className="absolute -top-1 right-6 w-2 h-2 bg-white border-l border-t border-gray-200 transform rotate-45"></div>
