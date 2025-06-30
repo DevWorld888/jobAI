@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useSession, signOut } from "next-auth/react";
-import { Settings, HelpCircle, Moon, LogOut, ChevronDown } from 'lucide-react';
+import { Settings, HelpCircle, Moon, LogOut, ChevronDown,LayoutDashboard} from 'lucide-react';
 import ButtonSkeleton from './ButtonSkeleton';
 
 
@@ -135,7 +135,7 @@ const UserProfileDropdown = () => {
                         onClick={() => handleMenuClick('Accessibility')}
                         className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-purple-50 transition-colors group"
                       >
-                        <Moon
+                        <LayoutDashboard 
                           size={20}
                           className="text-gray-400 group-hover:text-purple-600 transition-colors"
                         />
@@ -150,10 +150,10 @@ const UserProfileDropdown = () => {
                     <>
                        {/* Dashboard */}
                       <button
-                        onClick={() => handleMenuClick('Accessibility')}
+                        onClick={() => router.push('/dashboard')}
                         className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-purple-50 transition-colors group"
                       >
-                        <Moon
+                        <LayoutDashboard
                           size={20}
                           className="text-gray-400 group-hover:text-purple-600 transition-colors"
                         />
