@@ -2,7 +2,7 @@
 import useSWR from "swr";
 import JobCard from '@/components/custom/cardJobs';
 import  { JobCardSkeletonShimmer } from '@/components/custom/skeletonCardJobs';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import JobsListSkeleton from "@/components/custom/LoadingListJobs";
 
 type Job = {

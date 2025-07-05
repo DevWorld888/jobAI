@@ -169,7 +169,7 @@ const UserProfileDropdown = () => {
 
                             router.push('/login');
                           } else {
-                            router.push('/post-a-job');
+                            router.push('/postJob');
                           }
                         }}
                         className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-purple-50 transition-colors group"
