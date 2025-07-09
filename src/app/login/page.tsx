@@ -180,9 +180,9 @@ const ResponsiveLogin = () => {
             <p>You’re signing in as: <strong>{role ?? "Guest"}</strong></p>
             <button
               onClick={() => {
-                // const role = localStorage.getItem("next_user_role") || "seeker";
+                const role = localStorage.getItem("next_user_role") || "seeker";
                 // const redirectPath = role === "recruiter" ? "/dashboard" : "/listJobs";
-                signIn("google", { callbackUrl: "/listJobs" });
+                signIn("google", { callbackUrl: `/listJobs?role=${role}` });
               }}
               className="w-full border border-gray-300 hover:border-gray-400 text-gray-700 font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
             >

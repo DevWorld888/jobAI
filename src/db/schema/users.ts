@@ -7,7 +7,7 @@ export const users = pgTable("users", {
   name: varchar({ length: 255 }).notNull(),
   age: integer().notNull(),
   email: varchar({ length: 255 }).notNull().unique(),
-  role: text("role").default("job_seeker"), // job_seeker | recruiter | admin
+  role: text("role").default("seeker"), // job_seeker | recruiter | admin
   createdAt: timestamp("created_at").defaultNow(),
 });
 

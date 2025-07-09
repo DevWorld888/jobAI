@@ -9,7 +9,7 @@ export default function Page ()  {
     // Step 1: Basic Information
     title: '',
     description: '',
-    company: 'Your Company', // Default company name
+    company: '', // Default company name
     
     // Step 2: Location and Type
     location: '',
@@ -24,7 +24,7 @@ export default function Page ()  {
     makePublic: true
   });
 
-  const [logoPreview, setLogoPreview] = useState(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const totalSteps = 4;
 
   const steps = [
@@ -81,7 +81,11 @@ export default function Page ()  {
     if (file) {
       setFormData(prev => ({ ...prev, logo: file }));
       const reader = new FileReader();
-      reader.onload = (e) => setLogoPreview(e.target.result);
+      reader.onload = (e) => {
+        if (e.target && typeof e.target.result === 'string') {
+          setLogoPreview(e.target.result);
+        }
+      };
       reader.readAsDataURL(file);
     }
   };
@@ -209,6 +213,21 @@ export default function Page ()  {
           <div className="mt-2 text-sm text-gray-500">
             {formData.description.length}/500 characters
           </div>
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-3">
+            Company *
+          </label>
+          <input
+            type="text"
+            name="company"
+            value={formData.company}
+            onChange={handleInputChange}
+            className="w-full px-4 py-4 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+            placeholder="e.g. Your Company Name"
+            required
+          />
+          
+        </div>
         </div>
       </div>
     </div>

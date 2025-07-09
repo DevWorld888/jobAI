@@ -15,6 +15,13 @@
       "when": 1748774724846,
       "tag": "0001_wakeful_colossus",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752056858668,
+      "tag": "0002_funny_gabe_jones",
+      "breakpoints": true
     }
   ]
 }
