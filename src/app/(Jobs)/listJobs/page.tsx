@@ -20,12 +20,12 @@ export default function Page() {
   
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<'All' | 'Remote' | 'Full Time' | 'Part Time' | 'Contract'>('All');
-   const { data: jobs, error, isLoading } = useSWR("/api/jobs", fetcher);
+  const { data: jobs, error, isLoading } = useSWR<Job[]>("/api/jobs", fetcher);
 
   if (isLoading) return <JobsListSkeleton />;
-  if (error) return <p>Hubo un error al cargar trabajos</p>;
+  if (error) return <p>There was an error loading jobs</p>;
 
-  const filteredJobs = jobs.filter(job => {
+  const filteredJobs = (jobs ?? []).filter((job: Job) => {
     const matchesSearch =
       job.title.toLowerCase().includes(search.toLowerCase()) ||
       job.company.toLowerCase().includes(search.toLowerCase()) ||
@@ -43,7 +43,7 @@ export default function Page() {
     <div className="min-h-screenpx-4 py-8">
       <div className="max-w-6xl mx-auto">
          <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">List Jobs</h1>
+          <h1 className="text-5xl font-bold text-gray-900 mb-4">List Jobs</h1>
           <p className="text-gray-600">Here you can find all the jobs available.</p>
         </div>
         {/* Search and Filters */}

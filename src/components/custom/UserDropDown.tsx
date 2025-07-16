@@ -124,7 +124,25 @@ const UserProfileDropdown = () => {
                 </span>
               </button>
 
+              {/* Divider */}
+              <div className="border-t border-gray-100 my-2"></div>
 
+              {/* Post a Job */}
+              <button
+                onClick={() => {
+                 
+                  router.push('/postJob');
+                }}
+                className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-purple-50 transition-colors group"
+              >
+                <FolderUp
+                  size={20}
+                  className="text-gray-400 group-hover:text-purple-600 transition-colors"
+                />
+                <span className="text-gray-700 group-hover:text-purple-700 transition-colors">
+                  Post a Job
+                </span>
+              </button>
 
               {session && (
                 <>
